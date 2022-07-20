@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "350218870772",
+    "project_id": "stackx-24edc",
+    "storage_bucket": "stackx-24edc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350218870772:android:733a7f8a3523f9b60c23a1",
+        "android_client_info": {
+          "package_name": "com.example.stackx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350218870772-7gj263mr57gip3v5lg0cif1t797f4a9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stackx",
+            "certificate_hash": "23efbf037fe6a02d110a260e879f76295dbde96c"
+          }
+        },
+        {
+          "client_id": "350218870772-hfp19d929fre30eahde4rp042hchdq6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUiQA3yUcGnXr8fzwUDT6syf3QIEGosYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350218870772-hfp19d929fre30eahde4rp042hchdq6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
