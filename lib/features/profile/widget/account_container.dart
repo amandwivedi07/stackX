@@ -65,7 +65,7 @@ class SearchContainer extends StatelessWidget {
       width: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(8),
       ),
     );
   }

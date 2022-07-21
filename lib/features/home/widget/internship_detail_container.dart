@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stackx/constant/global_variable.dart';
-import 'package:stackx/features/home/widget/connect_with_us.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constant/reusable_container.dart';
@@ -18,9 +18,20 @@ class InternshipDetailContainer extends StatefulWidget {
 class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
   @override
   Widget build(BuildContext context) {
+    DateTime dateTimeCreatedAt = DateTime.parse(widget.document!['timePeriod']);
+    DateTime dateTimeNow = DateTime.now();
+    final differenceInDays = dateTimeCreatedAt.difference(dateTimeNow).inDays;
+    DateTime dateTimeInternshipStartdate =
+        DateTime.parse(widget.document!['internshipStart']);
+    DateTime dateTimeInternshipEndDate =
+        DateTime.parse(widget.document!['internshipEnd']);
+    final daysleftinInternship = dateTimeInternshipEndDate
+        .difference(dateTimeInternshipStartdate)
+        .inDays;
+
     const controllerTo = 'info@stackxsolutions.in';
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
@@ -28,37 +39,86 @@ class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(8),
               ),
-              child: ListTile(
-                title: Column(children: [
-                  const SizedBox(
-                    height: 10,
+              child: Column(children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.06,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: Text(
+                    '${widget.document!['name'][0]}',
+                    style: const TextStyle(fontSize: 40, color: Colors.white),
                   ),
-                  Text(
-                    'Name : ${widget.document!['name']}',
-                    style: const TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                  Text(
-                    'Internship Start : ${widget.document!['internshipStart']}',
-                    style: const TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                  Text(
-                    'Internship End : ${widget.document!['internshipEnd']}',
-                    style: const TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                  Text(
-                    'Stipened: ${widget.document!['stipened'].toString()}',
-                    style: const TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                ]),
-              ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Name : ${widget.document!['name']}',
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Internship Start : ${widget.document!['internshipStart']}',
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Internship End : ${widget.document!['internshipEnd']}',
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Stipened: ₹${widget.document!['stipened'].toString()}/month',
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * 0.05,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        child: Text(
+                          '${daysleftinInternship.toString()}',
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Days Left',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+              ]),
               width: MediaQuery.of(context).size.width * 0.7,
-              height: MediaQuery.of(context).size.height * 0.16,
+              height: MediaQuery.of(context).size.height * 0.29,
             ),
           ),
         ),
-        const SizedBox(height: 20,),
+        // Container(
+        //   child:
+        //       CircleAvatar(child: Text('${daysleftinInternship.toString()}')),
+        // ),
         ReusableContainer(
             width: MediaQuery.of(context).size.width * 0.7,
             height: 100,
@@ -81,8 +141,9 @@ class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
                   const SizedBox(
                     height: 5,
                   ),
+
                   Text(
-                    'Time Period : ${widget.document!['timePeriod']}',
+                    'Time Left : ${differenceInDays.toString()} Days',
                     style: const TextStyle(color: Colors.white, fontSize: 17),
                   ),
 
@@ -151,10 +212,9 @@ class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
               ),
             ],
           ),
-
         ),
-       const  SizedBox(height: 5,),
-           const Divider(
+      
+        const Divider(
           color: Colors.grey,
           height: 2,
           thickness: 1,
@@ -164,7 +224,6 @@ class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
         const SizedBox(
           height: 20,
         ),
-        const ConnectWithUs()
       ],
     );
   }

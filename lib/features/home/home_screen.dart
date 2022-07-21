@@ -41,9 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     EmpServices _empServices = EmpServices();
     return Scaffold(
       appBar: AppBar(
+          
         centerTitle: true,
         title: const Text('Home'),
       ),
+      
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
             .collection('EmployeeID')

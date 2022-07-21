@@ -5,6 +5,7 @@ import 'package:stackx/features/home/widget/internship_detail_container.dart';
 import 'package:stackx/features/profile/profile_desing.dart';
 import '../../services/emp_services.dart';
 import '../auth/login_screen.dart';
+import '../home/widget/connect_with_us.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = '/profile-screen';
@@ -42,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     EmpServices _empServices = EmpServices();
     return Scaffold(
+      bottomSheet: ConnectWithUs(),
       appBar: AppBar(
         actions: [
           IconButton( onPressed: () => FirebaseAuth.instance.signOut().then((value) =>

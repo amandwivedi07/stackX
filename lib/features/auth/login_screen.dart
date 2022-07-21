@@ -86,8 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
               email: _emailController.text.trim(),
               password: _passwordController.text.trim())
           .then((value) => {
-            
-            
                 Navigator.pushNamedAndRemoveUntil(
                     context, BottomBar.routeName, (route) => false)
               });
