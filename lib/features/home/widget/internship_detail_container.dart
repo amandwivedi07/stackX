@@ -26,7 +26,7 @@ class _InternshipDetailContainerState extends State<InternshipDetailContainer> {
     DateTime dateTimeInternshipEndDate =
         DateTime.parse(widget.document!['internshipEnd']);
     final daysleftinInternship = dateTimeInternshipEndDate
-        .difference(dateTimeInternshipStartdate)
+        .difference(dateTimeNow)
         .inDays;
 
     const controllerTo = 'info@stackxsolutions.in';
